@@ -1,0 +1,22 @@
+import pandas as pd
+import os
+
+input_dir = 'data2/2radky'
+output_dir = 'data2/prejmenovane'
+
+new_columns_names_mho = ['ZC_ICO:ZC_ICO', 'POCET_OBYVATEL']
+
+file_list = os.listdir(input_dir)
+
+for file_name in file_list:
+    if file_name.endswith(".csv"):
+        input_file_path = os.path.join(input_dir, file_name)
+        
+        df = pd.read_csv(input_file_path, delimiter=';', low_memory=False)
+        
+        df.rename(columns=dict(zip(df.columns[:len(new_columns_names_mho)], new_columns_names_mho)), inplace=True)
+        
+        output_file_path = os.path.join(output_dir, f'renamed_{file_name}')
+        
+        df.to_csv(output_file_path, index=False, sep=';')
+        
