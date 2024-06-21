@@ -1,0 +1,31 @@
+import os
+import pandas as pd
+
+input_dir = 'finm201_upravene'
+output_dir = 'finm201_4sloupce'
+
+columns_to_drop = [
+    '0FUNC_AREA:0FUNC_AREA',
+    '0CI_TYPE:0CI_TYPE',
+    'ZC_UCJED:ZC_UCJED',
+    'ZU_ROZSCH:ZU_ROZSCH',
+    'ZU_ROZPZM:ZU_ROZPZM',
+    'ZC_KRAJ:ZC_KRAJ',
+    'ZC_NUTS:ZC_NUTS',
+    'ZC_VTAB:ZC_VTAB',
+    'ZC_VYKAZ:ZC_VYKAZ'
+]
+
+file_list = os.listdir(input_dir)
+
+for file_name in file_list:
+    if file_name.endswith(".csv"):
+        input_file_path = os.path.join(input_dir, file_name)
+        
+        df = pd.read_csv(input_file_path, delimiter=';', low_memory=False)
+        
+        df.drop(columns=columns_to_drop, inplace=True, errors='ignore')
+        
+        output_file_path = os.path.join(output_dir, f'4sloupce_{file_name}')
+        
+        df.to_csv(output_file_path, index=False, sep=';')
