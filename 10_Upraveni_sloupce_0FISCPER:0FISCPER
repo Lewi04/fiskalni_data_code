@@ -1,0 +1,8 @@
+import pandas as pd
+
+df = pd.read_csv('combined_data_cleaned.csv', delimiter=';', low_memory=False)
+
+df['0FISCPER:0FISCPER'] = df['0FISCPER:0FISCPER'].apply(lambda x: (x - 12) // 1000 if x % 1000 == 12 else x)
+
+df.to_csv('combined_data_cleaned.csv', index=False, sep=';')
+print (df)
