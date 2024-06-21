@@ -1,9 +1,10 @@
 #je potreba zmenit hodnoty v finm201_path, mho_path a v merged_path roky apřípadně přidat připonu 012 u roku 2014-2021 a u roku 2022 pridat priponu 012_NEW
+#hodnoty XXX je třeba nahradit příslušnými příponami
 
 import pandas as pd
 
-finm201_path = 'finm201_4sloupce/4sloupce_upravene_FINM201_2010.csv'
-mho_path = 'data2/prejmenovane/renamed_NEW_MHO_2010012.csv'
+finm201_path = 'finm201_4sloupce/4sloupce_upravene_FINM201_XXX.csv'
+mho_path = 'data2/prejmenovane/renamed_NEW_MHO_XXX.csv'
 cilova_slozka_path = 'spojene'
 
 finm201_df = pd.read_csv(finm201_path, delimiter=';', low_memory=False)
@@ -15,6 +16,6 @@ merged_df = pd.merge(finm201_df, mho_df[['ZC_ICO:ZC_ICO', 'POCET_OBYVATEL']],
 print(mho_df)
 print (finm201_df)
 
-merged_path = os.path.join(cilova_slozka_path, f'FINAL_FINM201_2010.csv')
+merged_path = os.path.join(cilova_slozka_path, f'FINAL_FINM201_XXX.csv')
 
 merged_df.to_csv(merged_path, index=False, sep=';')
