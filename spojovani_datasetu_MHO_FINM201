@@ -1,0 +1,18 @@
+import pandas as pd
+
+finm201_path = 'data/FINM201_2010.csv'
+mho_path = 'data2/prejmenovane/renamed_NEW_MHO_2010012.csv'
+cilova_slozka_path = 'spojene'
+
+finm201_df = pd.read_csv(finm201_path, delimiter=';', low_memory=False)
+mho_df = pd.read_csv(mho_path, delimiter=';', low_memory=False)
+
+merged_df = pd.merge(finm201_df, mho_df[['ZC_ICO:ZC_ICO', 'POCET_OBYVATEL']], 
+                     how='left', on=['ZC_ICO:ZC_ICO'])
+
+print(mho_df)
+print (finm201_df)
+
+merged_path = os.path.join(cilova_slozka_path, f'FINAL_FINM201_2013.csv')
+
+merged_df.to_csv(merged_path, index=False, sep=';')
