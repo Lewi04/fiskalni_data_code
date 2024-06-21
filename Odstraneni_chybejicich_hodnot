@@ -1,0 +1,11 @@
+import pandas as pd
+
+input_file_path = 'combined_data.csv'
+
+output_file_path = 'combined_data_cleaned.csv'
+
+df = pd.read_csv(input_file_path, delimiter=';', low_memory=False)
+
+df_cleaned = df.dropna()
+
+df_cleaned.to_csv(output_file_path, index=False, sep=';')
