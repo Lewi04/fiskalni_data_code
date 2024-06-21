@@ -1,0 +1,7 @@
+import pandas as pd
+
+df = pd.read_csv('FINM201_2022012.csv', delimiter=';', low_memory=False)
+
+new_columns_names = ['ZC_VYKAZ:ZC_VYKAZ','ZC_VTAB:ZC_VTAB','0FISCPER:0FISCPER','ZC_UCJED:ZC_UCJED','ZC_ICO:ZC_ICO','ZC_KRAJ:ZC_KRAJ','ZC_NUTS:ZC_NUTS','0CI_TYPE:0CI_TYPE','0FUNC_AREA:0FUNC_AREA','ZCMMT_ITM:ZCMMT_ITM','ZU_ROZSCH:ZU_ROZSCH','ZU_ROZPZM:ZU_ROZPZM','ZU_ROZKZ:ZU_ROZKZ']
+df.rename(columns=dict(zip(df.columns,new_columns_names)), inplace=True)
+df.to_csv('FINM201_2022012_NEW.csv', index=False, sep=';')
