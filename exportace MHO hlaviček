@@ -1,0 +1,28 @@
+1  import pandas as pd
+2  import os
+3  
+4  directory = 'data2'
+5  output_file = 'headers_MHO.csv'
+6  
+7  headers_list = []
+8  
+9  for filename in os.listdir(directory):
+10      if filename.endswith(".csv"):
+11        file_path = os.path.join(directory, filename)
+12        
+13        try:
+14            df = pd.read_csv(file_path, encoding='utf-8')
+15            print(f"Successfully read {filename} with utf-8 encoding")
+16        except UnicodeDecodeError:
+17            try:
+18                df = pd.read_csv(file_path, encoding='latin1')
+19                print(f"Successfully read {filename} with latin1 encoding")
+20            except Exception as e:
+21                print(f"Failed to read {filename} with both utf-8 and latin1 encodings. 22 Error: {e}")
+23                continue 
+24
+25        headers_list.append({'filename': filename, 'headers': df.columns.tolist()})
+26
+27  headers_df = pd.DataFrame(headers_list)
+28  
+29  headers_df.to_csv(output_file, index=False)
