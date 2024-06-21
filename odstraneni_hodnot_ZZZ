@@ -1,0 +1,19 @@
+import os
+import pandas as pd
+
+input_dir = 'data'
+output_dir = 'finm201_upravene'
+
+file_list = os.listdir(input_dir)
+
+for file_name in file_list:
+    if file_name.endswith(".csv"):
+        input_file_path = os.path.join(input_dir, file_name)
+        
+        df = pd.read_csv(input_file_path, delimiter=';', low_memory=False)
+        
+        df = df[df['ZC_VYKAZ:ZC_VYKAZ'] != 'ZZZ']
+        
+        output_file_path = os.path.join(output_dir, f'upravene_{file_name}')
+        
+        df.to_csv(output_file_path, index=False, sep=';')
