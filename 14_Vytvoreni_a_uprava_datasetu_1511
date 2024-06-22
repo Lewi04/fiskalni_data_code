@@ -1,0 +1,18 @@
+#vytvoreni datastu 1511
+import pandas as pd
+
+df = pd.read_csv('combined_data_cleaned.csv', delimiter=';', low_memory=False)
+
+filtered_df = df[df['Polozka'] == 1511]
+
+print(filtered_df)
+filtered_df.to_csv ('combined_data_1511.csv',index = False, sep=';')
+
+#Odstraneni sloupce polozky
+import pandas as pd
+
+df = pd.read_csv('combined_data_1511.csv', delimiter=';', low_memory=False)
+
+df = df.drop(columns=['Polozka'])
+
+df.to_csv ('combined_data_1511.csv',index = False, sep=';')
