@@ -28,3 +28,18 @@ grouped_df.rename(columns={'Rozpocet': 'Rozpocet_6xxx'}, inplace=True)
 print(grouped_df)
 
 grouped_df.to_csv ('combined_data_6xxx.csv',index = False, sep=';')
+
+#vytvoreni sloupcu year_6xxx
+df = pd.read_csv('combined_data_6xxx.csv', delimiter= ';', low_memory= False)
+
+for year in range(2010, 2023):
+    df_year = df[df['ROK'] == year]
+
+    df_year = df_year.rename(columns={'Rozpocet_6xxx': f'{year}_6xxx'})
+
+    df = df.merge(df_year[['ICO', f'{year}_6xxx']],
+                  on=['ICO'], 
+                  how='left')
+
+df.to_csv ('combined_data_6xxx_x.csv.csv',index = False, sep=';')
+print(df)
