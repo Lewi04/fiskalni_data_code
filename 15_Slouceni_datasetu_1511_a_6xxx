@@ -1,0 +1,8 @@
+import pandas as pd
+
+df_1511 = pd.read_csv('combined_data_1511.csv', delimiter=';', low_memory=False)
+df_6xxx = pd.read_csv('combined_data_6xxx.csv', delimiter=';', low_memory=False)
+
+merged_df = pd.merge(df_1511, df_6xxx, on=['ROK', 'ICO', 'POCET_OBYVATEL'], how='outer')
+
+merged_df.to_csv('combined_data_merged.csv', index=False, sep=';')
