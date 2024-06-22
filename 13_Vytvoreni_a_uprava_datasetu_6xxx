@@ -41,5 +41,5 @@ for year in range(2010, 2023):
                   on=['ICO'], 
                   how='left')
 
-df.to_csv ('combined_data_6xxx_x.csv.csv',index = False, sep=';')
+df.to_csv ('combined_data_6xxx_x.csv',index = False, sep=';')
 print(df)
