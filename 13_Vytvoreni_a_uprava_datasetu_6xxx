@@ -1,0 +1,30 @@
+#vyfiltrovani polozek 6xxx
+import pandas as pd
+
+df = pd.read_csv('combined_data_cleaned.csv', delimiter=';', low_memory=False)
+
+filtered_df = df[(df['Polozka'] >= 6000) & (df['Polozka'] < 7000)]
+
+print(filtered_df)
+filtered_df.to_csv ('combined_data_6xxx.csv',index = False, sep=';')
+
+#odstraneni sloupce 'Polozka'
+df = pd.read_csv('combined_data_6xxx.csv', delimiter=';', low_memory=False)
+
+df = df.drop(columns=['Polozka'])
+
+df.to_csv ('combined_data_6xxx.csv',index = False, sep=';')
+
+#agregace atributu
+df = pd.read_csv('combined_data_6xxx.csv', delimiter=';', low_memory=False)
+
+grouped_df = df.groupby(['ROK', 'ICO']).agg({
+    'Rozpocet': 'sum',
+    'POCET_OBYVATEL': 'first'  # Assuming you want to keep the first value encountered under each group
+}).reset_index()
+
+grouped_df.rename(columns={'Rozpocet': 'Rozpocet_6xxx'}, inplace=True)
+
+print(grouped_df)
+
+grouped_df.to_csv ('combined_data_6xxx.csv',index = False, sep=';')
