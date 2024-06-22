@@ -16,3 +16,18 @@ df = pd.read_csv('combined_data_1511.csv', delimiter=';', low_memory=False)
 df = df.drop(columns=['Polozka'])
 
 df.to_csv ('combined_data_1511.csv',index = False, sep=';')
+
+#pridani sloupcu year_1511
+df = pd.read_csv('combined_data_1511.csv', delimiter= ';', low_memory= False)
+
+for year in range(2010, 2023):
+    df_year = df[df['ROK'] == year]
+
+    df_year = df_year.rename(columns={'Rozpocet_1511': f'{year}_1511'})
+
+    df = df.merge(df_year[['ICO', f'{year}_1511']],
+                  on=['ICO'], 
+                  how='left')
+
+df.to_csv ('combined_data_1511_x.csv.csv',index = False, sep=';')
+print(df)
