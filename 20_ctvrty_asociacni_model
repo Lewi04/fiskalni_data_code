@@ -1,0 +1,40 @@
+import pandas as pd
+from cleverminer import cleverminer
+
+# Load your dataset
+file_path = 'combined_data_merged_nad10000.csv'
+data = pd.read_csv(file_path, delimiter=';', encoding='ISO-8859-1')
+data = data.dropna()
+
+clm = cleverminer(
+    df=data,
+    proc='4ftMiner',
+    quantifiers={'conf': 0.3, 'Base': 30},
+    ante={
+        'attributes': [
+            {'name': 'kat dan R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+        ],
+        'minlen': 1,
+        'maxlen': 1,
+        'type': 'con'
+    },
+    succ={
+        'attributes': [
+            {'name': 'Zmena_investice_kat R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'Zmena_investice avg R+1 az R+3/R-1 az R-2', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'Zmena_investice avg R+1 az R+3/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'Zmena_investice avg R+1 az R+5/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'Zmena_investice avg R+1 az R+5/R-1 az R-3', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
+
+        ],
+        'minlen': 1,
+        'maxlen': 1,
+        'type': 'con'
+    },
+)
+
+# Print the results
+print(clm.result)
+clm.print_summary()
+clm.print_rulelist()
+clm.print_rule(1)
