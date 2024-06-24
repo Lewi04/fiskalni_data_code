@@ -9,7 +9,7 @@ data = data.dropna()
 clm = cleverminer(
     df=data,
     proc='4ftMiner',
-    quantifiers={'conf': 0.3, 'Base': 50},
+    quantifiers={'conf': 0.3, 'Base': 1000},
     ante={
         'attributes': [
             {'name': 'kat dan R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
