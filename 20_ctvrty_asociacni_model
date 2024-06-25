@@ -20,11 +20,11 @@ clm = cleverminer(
     },
     succ={
         'attributes': [
-            {'name': 'Zmena_investice_kat R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-            {'name': 'Zmena_investice avg R+1 az R+3/R-1 az R-2', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-            {'name': 'Zmena_investice avg R+1 az R+3/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-            {'name': 'Zmena_investice avg R+1 az R+5/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-            {'name': 'Zmena_investice avg R+1 az R+5/R-1 az R-3', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
+            {'name': 'kat_Zmena_investice_kat R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'kat_Zmena_investice avg R+1 az R+3/R-1 az R-2', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'kat_Zmena_investice avg R+1 az R+3/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'kat_Zmena_investice avg R+1 az R+5/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+            {'name': 'kat_Zmena_investice avg R+1 az R+5/R-1 az R-3', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
 
         ],
         'minlen': 1,
@@ -38,3 +38,5 @@ print(clm.result)
 clm.print_summary()
 clm.print_rulelist()
 clm.print_rule(1)
+clm.print_rule(2)
+clm.print_rule(3)
