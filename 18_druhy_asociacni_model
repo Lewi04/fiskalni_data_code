@@ -2,7 +2,7 @@ import pandas as pd
 from cleverminer import cleverminer
 
 
-file_path = 'combined_data_merged.csv'
+file_path = 'combined_data_merged_analytika.csv'
 data = pd.read_csv(file_path, delimiter=';', encoding='ISO-8859-1')
 data = data.dropna()
 
@@ -20,7 +20,7 @@ clm = cleverminer(
     },
     succ={
         'attributes': [
-            {'name': 'Zmena_investice_kat R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
+            {'name': 'kat_Zmena_investice_kat R/R-1', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
 
         ],
         'minlen': 1,
@@ -34,3 +34,6 @@ print(clm.result)
 clm.print_summary()
 clm.print_rulelist()
 clm.print_rule(1)
+clm.print_rule(2)
+clm.print_rule(3)
+clm.print_rule(4)
