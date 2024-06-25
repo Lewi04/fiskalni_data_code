@@ -38,4 +38,4 @@ combined_data.update(combined_data.apply(lambda row: fill_values(row, offset_ran
 combined_data.update(combined_data.apply(lambda row: fill_values(row, offset_range, '6xxx'), axis=1))
 
 
-combined_data.to_csv('combined_data_merged_x.csv', index=False, sep=';')
+combined_data.to_csv('combined_data_merged.csv', index=False, sep=';')
